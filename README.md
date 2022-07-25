@@ -28,6 +28,7 @@ BillingUI (Paid resource from Jaksam)
 * Download the Script and copy it in your resource folder
 * Import the .sql file in your Database if you want to use "ReplacePhone"
 * Open the Config.lua and setup everything the way you want it to be
+* put ensure esx_phonetax in your server.cfg
 
 ## Version History
 
