@@ -18,5 +18,4 @@ Config.PlayerAccount = 'money'          -- The Account that is used for the 'aut
 -- Config Items
 
 Config.ReplacePhone = true              -- Should the Phone(s) replaced by another Item if the player cant pay for it (Only works with Config.BillingMethod = 'auto')
-Config.ReplaceItem = 'dphone'           -- The Item that gets replaces the phone 
-
+Config.ReplaceItem = 'dphone'           -- The Item that gets replaces the phone
