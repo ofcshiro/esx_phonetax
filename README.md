@@ -18,7 +18,7 @@ BillingUI (Paid resource from Jaksam)
 
 ## Getting Started
 
-### Dependencies
+### Optionals
 
 * Billing UI - If you want to use the Integration
 * esxbilling - If you want to use default ESX Billing
