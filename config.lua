@@ -7,7 +7,7 @@ Config.ItemName = 'phone'               -- the Itemname, you can replace it if y
 -- Price and Time Options
 Config.PayAmount = 120                  -- the amount of money to pay per phone
 --Config.TaxTime = 60 * 60000             -- The Payment interval of the Tax (60 * 60000 = 1 Hour)
-Config.TaxTime = 60 * 10000
+Config.TaxTime = 60 * 60000
 -- Billing Settings
 Config.BillingMethod = 'auto'           -- Available Options: 'auto' (takes money automaticly), 'esx_billing' (sends a bill to the player), 'billingui' (sends a bill through Jaksams Billing UI)
 Config.Society = 'society_unemployed'   -- The Society that gets the money from paid bills (only works with esx_billing and Billing UI)
