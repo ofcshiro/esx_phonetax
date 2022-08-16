@@ -6,6 +6,17 @@ AddEventHandler('esx_phonetax:showNotify', function(icon, msg, title, subtitle)
 end)
 
 
+RegisterNetEvent('esx_phonetax:customNotify')
+AddEventHandler('esx_phonetax:customNotify', function(title, message, time, type)
+
+    if title == nil then 
+        -- Your custom export (if you dont have a title in your notify script)
+    else 
+        -- Your custom export (if you you have a title in your nofity script) 
+    end
+end)
+
+
 RegisterNetEvent('esx_phonetax:BillingUI')
 AddEventHandler('esx_phonetax:BillingUI', function(PlayerId, price)
 
