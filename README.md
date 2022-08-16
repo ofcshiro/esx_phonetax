@@ -18,6 +18,11 @@ BillingUI (Paid resource from Jaksam)
 
 ## Getting Started
 
+### Requirements
+
+* ESX Legacy Version 1.3 or higher (Latest highly recommended!)
+https://github.com/esx-framework/esx-legacy
+
 ### Optionals
 
 * Billing UI - If you want to use Jaksams Billing UI
