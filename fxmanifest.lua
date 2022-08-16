@@ -4,7 +4,7 @@ game "gta5"
 author "Shiro"
 title "ESX Phone Tax"
 description "Phone Tax per Phone" 
-version "1.0.0"
+version "1.5.0"
 
 shared_scripts { 
     '@es_extended/imports.lua',
