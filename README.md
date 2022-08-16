@@ -32,6 +32,9 @@ BillingUI (Paid resource from Jaksam)
 
 ## Version History
 
+* 1.5
+    * Custom Notify Support
+
 * 1.0
     * Initial Release
 
