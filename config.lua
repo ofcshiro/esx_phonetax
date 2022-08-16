@@ -1,7 +1,7 @@
 Config = {}
 
 -- General Options
-Config.PayPerPhone = false              -- if the tax is depended on the phone or not 
+Config.PayPerPhone = false              -- if the tax is depended on the amount of phones or not 
 Config.ItemName = 'phone'               -- the Itemname, you can replace it if your phone is named 'handy' for example
 Config.NotifyType = 'picture'           -- Available Options: 'custom' and 'picture'
 
