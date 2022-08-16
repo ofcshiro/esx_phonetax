@@ -34,6 +34,7 @@ Explanation for Config.BillingMethod
 Features available if you use 'auto': 
 - Config.ReplacePhone
 - Config.ReplaceItem
+- Config.PlayerAccount
 
 Features that cant be used with 'auto': 
 - Config.Society
@@ -48,6 +49,7 @@ Features available if you use 'esx_billing':
 Features that cant be used with 'esx_billing':
 - Config.ReplacePhone
 - Config.ReplaceItem
+- Config.PlayerAccount
 
 ------------------------------------------------------
 'billingui' (sends a bill through Jaksams Billing UI)
@@ -58,5 +60,6 @@ Features available if you use 'billing_ui':
 Features that cant be used with 'billingui':
 - Config.ReplacePhone
 - Config.ReplaceItem
+- Config.PlayerAccount
 
 --]]
