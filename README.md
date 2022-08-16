@@ -20,8 +20,8 @@ BillingUI (Paid resource from Jaksam)
 
 ### Optionals
 
-* Billing UI - If you want to use the Integration
-* esxbilling - If you want to use default ESX Billing
+* Billing UI - If you want to use Jaksams Billing UI
+* esx_billing - If you want to use default ESX Billing
 
 ### Installing
 
@@ -44,5 +44,5 @@ This project is licensed under the GNU General Public License v3.0 - see the LIC
 
 ## Acknowledgments
 
-Inspiration, code snippets, etc.
+Inspiration, picture notify code
 * [Luis-spec](https://github.com/Luis-spec) - He has a video on his Youtube for a very simplified version that i took as inspiration for this one.
