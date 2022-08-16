@@ -21,24 +21,46 @@ Citizen.CreateThread(function()
                                     if amount == 0 and ramount > 0 then
                                         local amount = xPlayer.getInventoryItem(Config.ReplaceItem).count
                                         xPlayer.removeAccountMoney(Config.PlayerAccount, rprice)
-                                        TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ~g~' .. rprice .. '$ ~s~für dein Handy bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
                                         xPlayer.removeInventoryItem(Config.ReplaceItem, amount)
                                         xPlayer.addInventoryItem(Config.ItemName, amount)
+
+                                        if Config.NotifyType == 'picture' then 
+                                            TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ' .. rprice .. '$ für dein Handy bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
+                                        elseif Config.NotifyType == 'custom' then
+                                            TriggerClientEvent('esx_phonetax:customNotify', xPlayer.source, Config.BillReason, 'Du hast ' .. rprice .. '$ für dein Handy bezahlt', 5000, 'info')
+                                        end
                                     else
                                         xPlayer.removeAccountMoney(Config.PlayerAccount, Config.PayAmount)
-                                        if ramount > 1 then
-                                            TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ~g~' .. rprice .. '$ ~s~für deine Handys bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
-                                        else
-                                            TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ~g~' .. price .. '$ ~s~für dein Handy bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
+                                        if Config.NotifyType == 'picture' then 
+                                            if ramount > 1 then
+                                                TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ' .. rprice .. '$ für deine Handys bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
+                                            else
+                                                TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ' .. price .. '$ für dein Handy bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
+                                            end
+                                        elseif Config.NotifyType == 'custom' then
+                                            if ramount > 1 then 
+                                                TriggerClientEvent('esx_phonetax:customNotify', xPlayer.source, Config.BillReason, 'Du hast ' .. rprice .. '$ für deine Handys bezahlt', 5000, 'info')
+                                            else
+                                                TriggerClientEvent('esx_phonetax:customNotify', xPlayer.source, Config.BillReason, 'Du hast ' .. price .. '$ für dein Handy bezahlt', 5000, 'info') 
+                                            end
                                         end
                                     end
                                 else
                                     if ramount > 0 then
-                                        TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du konntest deine Handy Gebühren: ' .. rprice .. '$ ~r~nicht ~s~Bezahlen', 'Handyrechnung', 'Gebühren und Versicherung') 
+                                        if Config.NotifyType == 'picture' then
+                                            TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du konntest deine Handy Gebühren: ' .. rprice .. '$ nicht Bezahlen', 'Handyrechnung', 'Gebühren und Versicherung') 
+                                        elseif Config.NotifyType == 'custom' then 
+                                            TriggerClientEvent('esx_phonetax:customNotify', xPlayer.source, Config.BillReason, 'Du konntest deine Handy Gebühren: ' .. rprice .. '$ nicht Bezahlen', 5000, 'info') 
+                                        end
                                     else
                                         xPlayer.removeInventoryItem(Config.ItemName, amount)
                                         xPlayer.addInventoryItem(Config.ReplaceItem, amount)
-                                        TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du konntest deine Handy Gebühren: ' .. price .. '$~r~nicht ~s~Bezahlen', 'Handyrechnung', 'Gebühren und Versicherung')
+                                        
+                                        if Config.NotifyType == 'picture' then 
+                                            TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du konntest deine Handy Gebühren: ' .. price .. '$ nicht Bezahlen', 'Handyrechnung', 'Gebühren und Versicherung')
+                                        elseif Config.NotifyType == 'custom' then 
+                                            TriggerClientEvent('esx_phonetax:customNotify', xPlayer.source, Config.BillReason, 'Du konntest deine Handy Gebühren: ' .. price .. '$ nicht Bezahlen', 5000, 'info') 
+                                        end
                                     end
                                 end
                             elseif Config.BillingMethod == 'esx_billing' then
@@ -52,12 +74,22 @@ Citizen.CreateThread(function()
                             if Config.BillingMethod == 'auto' then 
                                 if Money >= Config.PayAmount then
                                     xPlayer.removeAccountMoney(Config.PlayerAccount, price)
-                                    TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ~g~' .. price .. '$ ~s~für dein Handy bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
+
+                                    if Config.NofityType == 'picture' then 
+                                        TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ' .. price .. '$ für dein Handy bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
+                                    elseif Config.NotifyType == 'custom' then
+                                        TriggerClientEvent('esx_phonetax:customNotify', xPlayer.source, Config.BillReason, 'Du hast ' .. price .. '$ für dein Handy bezahlt', 5000, 'info')                                     
+                                    end
                                 else
                                     xPlayer.removeAccountMoney('bank', price)
-                                    TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ~g~' .. price .. '$ ~s~für dein Handy bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
+
+                                    if Config.NotifyType == 'picture' then
+                                        TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ' .. price .. '$ für dein Handy bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
+                                    elseif Config.NotifyType == 'custom' then 
+                                        TriggerClientEvent('esx_phonetax:customNotify', xPlayer.source, Config.BillReason, 'Du hast ' .. price .. '$ für dein Handy bezahlt', 5000, 'info') 
+                                
+                                    end
                                 end
-                            
                             elseif Config.BillingMethod == 'esx_billing' then
                                 -- Code for esx_billing
                                 TriggerClientEvent('esx_phonetax:esxBilling', PlayerId, PlayerId, price)
@@ -76,24 +108,47 @@ Citizen.CreateThread(function()
                                         if amount == 0 and ramount > 0 then
                                             local amount = xPlayer.getInventoryItem(Config.ReplaceItem).count
                                             xPlayer.removeAccountMoney(Config.PlayerAccount, Config.PayAmount)
-                                            TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ~g~' .. Config.PayAmount .. '$ ~s~für dein Handy bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
                                             xPlayer.removeInventoryItem(Config.ReplaceItem, amount)
                                             xPlayer.addInventoryItem(Config.ItemName, amount)
+                                            
+                                            if Config.NotifyType == 'picture' then 
+                                                TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ' .. rprice .. '$ für dein Handy bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
+                                            elseif Config.NotifyType == 'custom' then
+                                                TriggerClientEvent('esx_phonetax:customNotify', xPlayer.source, Config.BillReason, 'Du hast ' .. rprice .. '$ für dein Handy bezahlt', 5000, 'info')
+                                            end
                                         else
                                             xPlayer.removeAccountMoney(Config.PlayerAccount, Config.PayAmount)
+
                                             if amount > 1 then
-                                                TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ~g~' .. Config.PayAmount .. '$ ~s~für deine Handys bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
+                                                if Config.NotifyType == 'picture' then 
+                                                    TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ' .. Config.PayAmount .. '$ für deine Handys bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
+                                                elseif Config.NotifyType == 'custom' then 
+                                                    TriggerClientEvent('esx_phonetax:customNotify', xPlayer.source, Config.BillReason, 'Du hast ' .. Config.PayAmount .. '$ für dein Handys bezahlt', 5000, 'info')
+                                                end
                                             else
-                                                TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ~g~' .. Config.PayAmount .. '$ ~s~für dein Handy bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
+                                                if Config.NofityType == 'picture' then 
+                                                    TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ' .. Config.PayAmount .. '$ für dein Handy bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
+                                                elseif Config.NotifyType == 'custom' then 
+                                                    TriggerClientEvent('esx_phonetax:customNotify', xPlayer.source, Config.BillReason, 'Du hast ' .. Config.PayAmount .. '$ für dein Handy bezahlt', 5000, 'info')
+                                                end
                                             end
                                         end 
                                     else
                                         if ramount > 0 then
-                                            TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du konntest deine Handy Gebühren: ' .. Config.PayAmount .. ' ~r~nicht ~s~Bezahlen', 'Handyrechnung', 'Gebühren und Versicherung') 
+                                            if Config.NotifyType == 'picture' then     
+                                                TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du konntest deine Handy Gebühren: ' .. Config.PayAmount .. ' nicht Bezahlen', 'Handyrechnung', 'Gebühren und Versicherung') 
+                                            elseif Config.NotifyType == 'custom' then 
+                                                TriggerClientEvent('esx_phonetax:customNotify', xPlayer.source, Config.BillReason, 'Du konntest deine Handy Gebühren: ' .. Config.PayAmount .. ' nicht Bezahlen', 5000, 'info')
+                                            end
                                         else
                                             xPlayer.removeInventoryItem(Config.ItemName, amount)
                                             xPlayer.addInventoryItem(Config.ReplaceItem, amount)
-                                            TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du konntest deine Handy Gebühren: ' .. Config.PayAmount .. ' ~r~nicht ~s~Bezahlen', 'Handyrechnung', 'Gebühren und Versicherung')
+
+                                            if Config.NotifyType == 'picture' then
+                                                TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du konntest deine Handy Gebühren: ' .. Config.PayAmount .. ' nicht Bezahlen', 'Handyrechnung', 'Gebühren und Versicherung')
+                                            elseif Config.NotifyType == 'custom' then
+                                                TriggerClientEvent('esx_phonetax:customNotify', xPlayer.source, Config.BillReason, 'Du konntest deine Handy Gebühren: ' .. Config.PayAmount .. ' nicht Bezahlen', 5000, 'info')
+                                            end
                                         end
                                     end
                                 
@@ -108,10 +163,19 @@ Citizen.CreateThread(function()
                                 if Config.BillingMethod == 'auto' then 
                                     if Money >= Config.PayAmount then
                                         xPlayer.removeAccountMoney(Config.PlayerAccount, Config.PayAmount)
-                                        TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ~g~' .. Config.PayAmount .. '$ ~s~für dein Handy bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
+
+                                        if Config.NotifyType == 'picture' then
+                                            TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ' .. Config.PayAmount .. '$ für dein Handy bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
+                                        elseif Config.NotifyType == 'custom' then
+                                            TriggerClientEvent('esx_phonetax:customNotify', xPlayer.source, Config.BillReason, 'Du hast ' .. Config.PayAmount .. '$ für dein Handy bezahlt', 5000, 'info')
+                                        end
                                     else
                                         xPlayer.removeAccountMoney('bank', price)
-                                        TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ~g~' .. Config.PayAmount .. '$ ~s~für dein Handy bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
+                                        if Config.NotifyType == 'picture' then
+                                            TriggerClientEvent('esx_phonetax:showNotify', xPlayer.source, 'CHAR_CHAT_CALL', 'Du hast ' .. Config.PayAmount .. '$ für dein Handy bezahlt', 'Handyrechnung', 'Gebühren und Versicherung')
+                                        elseif Config.NotifyType == 'custom' then
+                                            TriggerClientEvent('esx_phonetax:customNotify', xPlayer.source, Config.BillReason, 'Du hast ' .. Config.PayAmount .. '$ für dein Handy bezahlt', 5000, 'info')
+                                        end
                                     end
                                 
                                 elseif Config.BillingMethod == 'esx_billing' then
